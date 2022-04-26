@@ -8,9 +8,9 @@ public abstract class Account{
     private double funds;
     private ArrayList<Stock> portfolio;
 
-    public Account(double funds){
+    public Account(){
         portfolio = new ArrayList<>();
-        this.funds = funds;
+        this.funds = 4000;
     }
 
     public double getFunds() {
