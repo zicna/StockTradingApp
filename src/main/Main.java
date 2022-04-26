@@ -1,10 +1,13 @@
 package main;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 import main.model.account.Account;
 import main.model.account.Personal;
 import main.model.account.TFSA;
+import main.model.stock.Stock;
 import main.utils.Color;
 
 public class Main{
@@ -27,6 +30,14 @@ public class Main{
             continue;
             }
         }
+        
+        System.out.print("Enter anything to start trading:");
+        scan.nextLine();
+
+        for (int i = 0; i < 2160; i++) {
+            System.out.println("DAY " + i);
+            dailyStockPrices();
+        }
         scan.close();
     }
 
@@ -42,5 +53,11 @@ public class Main{
             throw new IllegalArgumentException("arguments must be instance of Account class");
         }
             System.out.println("\nYou created a " + Color.YELLOW + source.getClass().getSimpleName() + Color.RESET + " account. Your account balance is " + Color.GREEN + source.getFunds() + Color.RESET + "\n");
+    }
+
+    public static void dailyStockPrices(){
+
+        // Stock stock = new Stock();
+        // Path path = Paths.get(Thread.currentThread().getContextClassLoader().getResource("src/main/data/" + "stock" + ".csv").toURI());
     }
 }
