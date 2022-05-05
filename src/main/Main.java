@@ -1,8 +1,10 @@
 package main;
 
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 import main.model.account.Account;
 import main.model.account.Personal;
@@ -12,7 +14,7 @@ import main.utils.Color;
 
 public class Main{
     public static void main(String[] args) {
-        Main.welcome();
+        welcome();
         Scanner scan = new Scanner(System.in);
         while(true){
             System.out.print("Respectively, type 'a' or 'b' to create a Personal account of TFSA: ");
@@ -33,6 +35,8 @@ public class Main{
         
         System.out.print("Enter anything to start trading:");
         scan.nextLine();
+
+        dailyStockPrices();
 
         for (int i = 0; i < 2160; i++) {
             System.out.println("DAY " + i);
@@ -57,7 +61,20 @@ public class Main{
 
     public static void dailyStockPrices(){
 
-        // Stock stock = new Stock();
-        // Path path = Paths.get(Thread.currentThread().getContextClassLoader().getResource("src/main/data/" + "stock" + ".csv").toURI());
+    //     Stock stock = new Stock();
+    //     Path path = Paths.get(Thread.currentThread().getContextClassLoader().getResource("src/main/data/" + "stock" + ".csv").toURI());
+    // * try make this work with AAPL stock only
+    // Path path = Paths.get(Thread.currentThread().getContextClassLoader().getResource("src/main/data/AAPL.csv").toURI());
+    Path path = Paths.get("src/main/data/AAPL.csv");
+    try {
+        Stream<String> stock = Files.lines(path);
+        stock
+            .map(line -> line.split(","))
+            .filter(lineArray -> lineArray[0] == "2")
+            .forEach(line -> System.out.print(line));
+        
+    } catch (Exception e) {
+        //TODO: handle exception
+    }
     }
 }
