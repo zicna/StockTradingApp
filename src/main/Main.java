@@ -28,12 +28,11 @@ public class Main{
 
         accCreateAnnouncement(account);
         
-        diplayStockPrice(290);
-
+        for (int day = 1; day < 2161; day++) {
+            diplayStockPrice(day);
+            scanner.nextLine();
+        }
         
-
-
-
         scanner.close();
     }
 
@@ -55,6 +54,7 @@ public class Main{
     }
 
     public static void diplayStockPrice(int day){
+        System.out.println(Color.RED + "\t\tDay: " + Color.GREEN + day + Color.RESET + "\n");
         System.out.println(Color.GREEN + "\t" + StockEnum.AAPL.toString() + Color.RESET + " " + Color.BLUE + "\t" + getStock(StockEnum.AAPL.toString(), day) + Color.RESET);
         System.out.println(Color.GREEN + "\t" + StockEnum.FB.toString() + Color.RESET + " " + Color.BLUE + "\t" + getStock(StockEnum.FB.toString(), day)+ Color.RESET);
         System.out.println(Color.GREEN + "\t" + StockEnum.GOOG.toString() + Color.RESET + " " + Color.BLUE + "\t" + getStock(StockEnum.GOOG.toString(), day)+ Color.RESET);
