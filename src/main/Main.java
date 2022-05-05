@@ -27,7 +27,8 @@ public class Main{
 
         accCreateAnnouncement(account);
         
-        // System.out.println(getStock("AAPL", 1));
+        diplayStockPrice(290);
+
 
 
         scanner.close();
@@ -48,6 +49,13 @@ public class Main{
             choice = scanner.nextLine();
         }
         return choice;
+    }
+
+    public static void diplayStockPrice(int day){
+        System.out.println(Color.GREEN + "\tAAPL" + Color.RESET + " " + Color.BLUE + "\t" + getStock("AAPL", day) + Color.RESET);
+        System.out.println(Color.GREEN + "\tFB" + Color.RESET + " " + Color.BLUE + "\t" + getStock("FB", day)+ Color.RESET);
+        System.out.println(Color.GREEN + "\tGOOG" + Color.RESET + " " + Color.BLUE + "\t" + getStock("GOOG", day)+ Color.RESET);
+        System.out.println(Color.GREEN + "\tTSLA" + Color.RESET + " " + Color.BLUE + "\t" + getStock("TSLA", day)+ Color.RESET);
     }
 
     
