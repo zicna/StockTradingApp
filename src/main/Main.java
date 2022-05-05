@@ -30,7 +30,8 @@ public class Main{
         
         for (int day = 1; day < 2161; day++) {
             diplayStockPrice(day);
-            scanner.nextLine();
+            
+            buyOrSell();
         }
         
         scanner.close();
@@ -54,11 +55,21 @@ public class Main{
     }
 
     public static void diplayStockPrice(int day){
-        System.out.println(Color.RED + "\t\tDay: " + Color.GREEN + day + Color.RESET + "\n");
+        System.out.println(Color.RED + "\t\tDAY: " + Color.GREEN + day + Color.RED + " PRICES" + Color.RESET + "\n");
         System.out.println(Color.GREEN + "\t" + StockEnum.AAPL.toString() + Color.RESET + " " + Color.BLUE + "\t" + getStock(StockEnum.AAPL.toString(), day) + Color.RESET);
         System.out.println(Color.GREEN + "\t" + StockEnum.FB.toString() + Color.RESET + " " + Color.BLUE + "\t" + getStock(StockEnum.FB.toString(), day)+ Color.RESET);
         System.out.println(Color.GREEN + "\t" + StockEnum.GOOG.toString() + Color.RESET + " " + Color.BLUE + "\t" + getStock(StockEnum.GOOG.toString(), day)+ Color.RESET);
         System.out.println(Color.GREEN + "\t" + StockEnum.TSLA.toString() + Color.RESET + " " + Color.BLUE + "\t" + getStock(StockEnum.TSLA.toString(), day)+ Color.RESET);
+    }
+
+    public static void buyOrSell(){
+        System.out.print("\n\nWould you like to 'buy' or 'sell'?");
+        String input = scanner.nextLine();
+        while(!(input.equals("buy") || input.equals("sell"))){
+            System.out.print("\n\nWould you like to 'buy' or 'sell'?");
+            input = scanner.nextLine();
+        }
+        System.out.println(input);
     }
 
     
