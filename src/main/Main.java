@@ -11,6 +11,7 @@ import main.model.account.Account;
 import main.model.account.Personal;
 import main.model.account.TFSA;
 import main.model.stock.Stock;
+import main.model.stock.StockEnum;
 import main.utils.Color;
 
 public class Main{
@@ -28,6 +29,8 @@ public class Main{
         accCreateAnnouncement(account);
         
         diplayStockPrice(290);
+
+        
 
 
 
@@ -52,10 +55,10 @@ public class Main{
     }
 
     public static void diplayStockPrice(int day){
-        System.out.println(Color.GREEN + "\tAAPL" + Color.RESET + " " + Color.BLUE + "\t" + getStock("AAPL", day) + Color.RESET);
-        System.out.println(Color.GREEN + "\tFB" + Color.RESET + " " + Color.BLUE + "\t" + getStock("FB", day)+ Color.RESET);
-        System.out.println(Color.GREEN + "\tGOOG" + Color.RESET + " " + Color.BLUE + "\t" + getStock("GOOG", day)+ Color.RESET);
-        System.out.println(Color.GREEN + "\tTSLA" + Color.RESET + " " + Color.BLUE + "\t" + getStock("TSLA", day)+ Color.RESET);
+        System.out.println(Color.GREEN + "\t" + StockEnum.AAPL.toString() + Color.RESET + " " + Color.BLUE + "\t" + getStock(StockEnum.AAPL.toString(), day) + Color.RESET);
+        System.out.println(Color.GREEN + "\t" + StockEnum.FB.toString() + Color.RESET + " " + Color.BLUE + "\t" + getStock(StockEnum.FB.toString(), day)+ Color.RESET);
+        System.out.println(Color.GREEN + "\t" + StockEnum.GOOG.toString() + Color.RESET + " " + Color.BLUE + "\t" + getStock(StockEnum.GOOG.toString(), day)+ Color.RESET);
+        System.out.println(Color.GREEN + "\t" + StockEnum.TSLA.toString() + Color.RESET + " " + Color.BLUE + "\t" + getStock(StockEnum.TSLA.toString(), day)+ Color.RESET);
     }
 
     
