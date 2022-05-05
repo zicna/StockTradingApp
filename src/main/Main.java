@@ -1,5 +1,6 @@
 package main;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -23,7 +24,7 @@ public class Main{
             case "a": account = new Personal(); break;
             case "b": account = new TFSA(); break;
         }
-        
+
         accCreateAnnouncement(account);
         
         
@@ -56,4 +57,16 @@ public class Main{
         }
             System.out.println("\nYou created a " + Color.YELLOW + source.getClass().getSimpleName() + Color.RESET + " account. Your account balance is " + Color.GREEN + source.getFunds() + Color.RESET + "\n");
     }
+
+    public static Path getPath(String stock){
+        try {
+            return Paths.get(Thread.currentThread().getContextClassLoader().getResource("src/main/data/"+stock+".csv").toURI());
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+
 }
