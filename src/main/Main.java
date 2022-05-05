@@ -27,7 +27,7 @@ public class Main{
 
         accCreateAnnouncement(account);
         
-        
+        // System.out.println(getStock("AAPL", 1));
 
 
         scanner.close();
@@ -50,6 +50,8 @@ public class Main{
         return choice;
     }
 
+    
+
 
     public static <T extends Account> void accCreateAnnouncement(T source){
         if(!(source instanceof Account)){
@@ -67,6 +69,22 @@ public class Main{
             return null;
         }
     }
+
+    public static String getStock(String stock, int day){
+        Path path = getPath(stock);
+        try {
+            return Files.lines(path)
+                    .skip(1)
+                    .filter(line -> Integer.valueOf(line.split(",")[0]) == day)
+                    .map(line -> line.split(",")[1])
+                    .findFirst()
+                    .orElse(null);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
 
 
 }
