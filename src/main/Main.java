@@ -20,13 +20,10 @@ public class Main{
         welcome();
        
         switch(accountChoice()){
-            case "a":
-                account = new Personal();
-                break;
-            case "b":
-                account = new TFSA();
-                break;
+            case "a": account = new Personal(); break;
+            case "b": account = new TFSA(); break;
         }
+        
         accCreateAnnouncement(account);
         
         
