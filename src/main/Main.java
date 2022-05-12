@@ -33,9 +33,24 @@ public class Main{
             scanner.nextLine();
             diplayStockPrice(day);
             String first = buyOrSell();
+
             String second = chooseAStock();
-            int third = numberOfStocks();
+            double stockPrice = Double.parseDouble(getStock(second, day));
+            Stock stock = new Stock(second, stockPrice);
             
+            int third = numberOfStocks();
+            account.addStock(stock, third);
+            account.setFunds(first, stockPrice);
+
+            System.out.print("Press 'exit' to exit this app or anything else to continue: ");
+            String procceed = scanner.nextLine();
+
+            if(procceed.equals("exit")){
+                break;
+            }else{
+                continue;
+            }
+
 
         }
         
@@ -90,11 +105,12 @@ public class Main{
 
     public static int numberOfStocks(){
         System.out.print("Enter number of stocks: ");
-        int stockNumber = scanner.nextInt();
-        while(!(scanner.hasNextInt())){
+        while(!scanner.hasNextInt()){
             System.out.print("Enter number of stocks: ");
-            stockNumber = scanner.nextInt();
+            scanner.next();
         }
+        int stockNumber = scanner.nextInt();
+        scanner.nextLine();
         return stockNumber;
     }
 
