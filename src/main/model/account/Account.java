@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.HashMap;
 
 import main.model.stock.Stock;
+import main.utils.Color;
 
 public abstract class Account{
     private double funds;
@@ -23,11 +24,11 @@ public abstract class Account{
         return portfolio;
     }
 
-    public void setFunds(String chooice, double funds) {
+    public void setFunds(String chooice, double funds, int numberOfStocks) {
         if(chooice.equals("buy")){
-            this.funds -= funds;
+            this.funds -= funds * numberOfStocks;
         }else{
-            this.funds += funds;
+            this.funds += funds * numberOfStocks;
         }
     }
     
@@ -37,6 +38,20 @@ public abstract class Account{
 
     public void addStock(Stock stock, int numOfStocks){
         portfolio.merge(stock.getName(), numOfStocks, Integer::sum);
+    }
+
+    public void print(){
+        System.out.println("\n");
+        System.out.println("Stock" + "\tShares");
+        System.out.println("\n");
+        
+        portfolio.forEach((stock, value) -> {
+            System.out.println(Color.BLUE + stock + Color.RESET + "\t" + Color.GREEN + value + Color.RESET);
+        });
+        System.out.println("\n");
+        System.out.println("Funds left\t" + Color.GREEN + "$" + this.getFunds() + Color.RESET);
+        System.out.println("\n");
+
     }
 
     public abstract void sellTrades();
