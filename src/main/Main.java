@@ -28,7 +28,7 @@ public class Main{
 
         accCreateAnnouncement(account);
         
-        System.out.print("Enter anything to start trading...");
+        System.out.print("Enter anything to start trading: ");
         scanner.nextLine();
         for (int day = 1; day < 2161; day++) {
             diplayStockPrice(day);
@@ -60,7 +60,7 @@ public class Main{
 
             account.print();
 
-            System.out.print("Press 'exit' to exit this app or anything else to continue: ");
+            System.out.print("Enter" + Color.RED_BACKGROUND +  " exit " + Color.RESET + " to exit or anything else to continue: ");
             String procceed = scanner.nextLine();
 
 
@@ -82,10 +82,10 @@ public class Main{
     }
 
     public static String accountChoice(){
-        System.out.print("Respectively, type 'a' or 'b' to create a Personal account of TFSA: ");
+        System.out.print("Respectively, type '" + Color.GREEN + "a" + Color.RESET + "' or '" + Color.GREEN + "b" + Color.RESET + "' to create a Personal account or TFSA: \t");
         String choice = scanner.nextLine();
         while(!(choice.equals("a") || choice.equals("b"))){
-            System.out.print("Respectively, type 'a' or 'b' to create a Personal account of TFSA: ");
+            System.out.print("Respectively, type '" + Color.GREEN + "a" + Color.RESET + "' or '" + Color.GREEN + "b" + Color.RESET + "' to create a Personal account or TFSA: \t");
             choice = scanner.nextLine();
         }
         return choice;
@@ -101,29 +101,29 @@ public class Main{
     }
 
     public static String buyOrSell(){
-        System.out.print("\n\nWould you like to 'buy' or 'sell'? ");
+        System.out.print("\n\nWould you like to '" +  Color.GREEN + "buy" + Color.RESET + "' or '" +  Color.GREEN + "sell" + Color.RESET + "'?\t ");
         String input = scanner.nextLine();
         while(!(input.equals("buy") || input.equals("sell"))){
-            System.out.print("\n\nWould you like to 'buy' or 'sell'?");
+            System.out.print("\n\nWould you like to '" +  Color.GREEN + "buy" + Color.RESET + "' or '" +  Color.GREEN + "sell" + Color.RESET + "'?\t ");
             input = scanner.nextLine();
         }
         return input;
     }
 
     public static String chooseAStock(){
-        System.out.print("Please choose a stock to stade (AAPL, FB, GOOG, or TSLA): ");
+        System.out.print("Please choose a stock to trade:\t\t ");
         String stock = scanner.nextLine();
         while(!(stock.equals("AAPL") || stock.equals("FB") || stock.equals("GOOG") || stock.equals("TSLA"))){
-            System.out.print("Please choose a stock to stade (AAPL, FB, GOOG, or TSLA): ");
+            System.out.print("Please choose a stock to stade:\t\t ");
             stock = scanner.nextLine();
         }
         return stock;
     }
 
     public static int numberOfStocks(){
-        System.out.print("Enter number of stocks: ");
+        System.out.print("Enter number of stocks:\t\t\t ");
         while(!scanner.hasNextInt()){
-            System.out.print("Enter number of stocks: ");
+            System.out.print("Enter number of stocks:\t\t\t ");
             scanner.next();
         }
         int stockNumber = scanner.nextInt();
@@ -135,6 +135,8 @@ public class Main{
         System.out.print("\nThe trade was " + Color.RED + "unsuccessful" + Color.RESET + ". Here is your portfolio: \n");
         account.print();
     }
+
+
 
     
 
