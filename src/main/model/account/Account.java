@@ -50,16 +50,15 @@ public abstract class Account{
     }
 
     public void print(){
-        System.out.println("\n");
-        System.out.println("Stock" + "\tShares");
-        System.out.println("\n");
+        System.out.println(Color.PURPLE + "\n\t********** P O R T F O L I O **********" + Color.RESET);
+        System.out.println("\t\tStock" + "\tShares\n");
         
         portfolio.forEach((stock, value) -> {
-            System.out.println(Color.BLUE + stock + Color.RESET + "\t" + Color.GREEN + value + Color.RESET);
+            System.out.println("\t\t" + Color.BLUE + stock + Color.RESET + "\t" + Color.GREEN + value + Color.RESET);
         });
-        System.out.println("\n");
-        System.out.println("Funds left\t" + Color.GREEN + "$" + this.getFunds() + Color.RESET);
-        System.out.println("\n");
+
+        System.out.println("\n\tFunds left\t" + Color.GREEN + "$" + this.getFunds() + Color.RESET);
+        System.out.println(Color.PURPLE + "\n\t*************************************" + Color.RESET + "\n");
 
     }
 
