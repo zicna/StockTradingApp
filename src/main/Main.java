@@ -28,9 +28,9 @@ public class Main{
 
         accCreateAnnouncement(account);
         
+        System.out.print("Enter anything to start trading...");
+        scanner.nextLine();
         for (int day = 1; day < 2161; day++) {
-            System.out.print("Enter anything to start trading...");
-            scanner.nextLine();
             diplayStockPrice(day);
             String first = buyOrSell();
 
@@ -39,19 +39,24 @@ public class Main{
             Stock stock = new Stock(second, stockPrice);
             
             int third = numberOfStocks();
-            account.addStock(stock, third);
-            account.setFunds(first, stockPrice);
+            if (first.equals("buy")){
+                account.addStock(stock, third);
+            }else if(first.equals("sell")){
+                account.removeStock(stock, third);
+            }
+            account.setFunds(first, stockPrice, third);
+
+            account.print();
 
             System.out.print("Press 'exit' to exit this app or anything else to continue: ");
             String procceed = scanner.nextLine();
+
 
             if(procceed.equals("exit")){
                 break;
             }else{
                 continue;
             }
-
-
         }
         
         scanner.close();
@@ -104,6 +109,7 @@ public class Main{
     }
 
     public static int numberOfStocks(){
+        
         System.out.print("Enter number of stocks: ");
         while(!scanner.hasNextInt()){
             System.out.print("Enter number of stocks: ");
