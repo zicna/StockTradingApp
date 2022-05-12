@@ -47,6 +47,7 @@ public class Main{
                 }else {
                     account.addStock(stock, third);
                     account.setFunds(first, stockPrice, third);
+                    successfulTrade(account);
                 }
             }else if(first.equals("sell")){
                 if(account.getPortfolio().get(second) < third){
@@ -55,14 +56,12 @@ public class Main{
                 }else{
                     account.removeStock(stock, third);
                     account.setFunds(first, stockPrice, third);
+                    successfulTrade(account);
                 }
             }
 
-            account.print();
-
-            System.out.print("Enter" + Color.RED_BACKGROUND +  " exit " + Color.RESET + " to exit or anything else to continue: ");
+            System.out.print("Enter " + Color.RED_BACKGROUND +  " exit " + Color.RESET + " to exit or anything else to continue: ");
             String procceed = scanner.nextLine();
-
 
             if(procceed.equals("exit")){
                 break;
@@ -132,13 +131,14 @@ public class Main{
     }
 
     public static void unsuccessfulTrade(Account account){
-        System.out.print("\nThe trade was " + Color.RED + "unsuccessful" + Color.RESET + ". Here is your portfolio: \n");
+        System.out.print("\nThe trade was " + Color.RED_BACKGROUND + " UNSUCCESSFUL " + Color.RESET + ". Here is your portfolio: \n");
         account.print();
     }
 
-
-
-    
+    public static void successfulTrade(Account account){
+        System.out.print("\nThe trade was " + Color.GREEN_BACKGROUND + " SUCCESSFUL " + Color.RESET + ". Here is your portfolio: \n");
+        account.print();
+    }
 
 
     public static <T extends Account> void accCreateAnnouncement(T source){
