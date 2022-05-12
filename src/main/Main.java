@@ -32,19 +32,31 @@ public class Main{
         scanner.nextLine();
         for (int day = 1; day < 2161; day++) {
             diplayStockPrice(day);
-            String first = buyOrSell();
 
+            String first = buyOrSell();
             String second = chooseAStock();
+            int third = numberOfStocks();
+
             double stockPrice = Double.parseDouble(getStock(second, day));
             Stock stock = new Stock(second, stockPrice);
             
-            int third = numberOfStocks();
             if (first.equals("buy")){
-                account.addStock(stock, third);
+                if (account.getFunds() < stockPrice * third){
+                    System.out.println("Sorry insufficient funds");
+                    continue;
+                }else {
+                    account.addStock(stock, third);
+                    account.setFunds(first, stockPrice, third);
+                }
             }else if(first.equals("sell")){
-                account.removeStock(stock, third);
+                if(account.getPortfolio().get(second) < third){
+                    System.out.println("Sorry insufficient stock number");
+                    continue;
+                }else{
+                    account.removeStock(stock, third);
+                    account.setFunds(first, stockPrice, third);
+                }
             }
-            account.setFunds(first, stockPrice, third);
 
             account.print();
 
@@ -89,7 +101,7 @@ public class Main{
     }
 
     public static String buyOrSell(){
-        System.out.print("\n\nWould you like to 'buy' or 'sell'?");
+        System.out.print("\n\nWould you like to 'buy' or 'sell'? ");
         String input = scanner.nextLine();
         while(!(input.equals("buy") || input.equals("sell"))){
             System.out.print("\n\nWould you like to 'buy' or 'sell'?");

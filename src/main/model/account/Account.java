@@ -41,7 +41,7 @@ public abstract class Account{
         this.portfolio = portfolio;
     }
 
-    public void addStock(Stock stock, int numOfStocks){
+    public void addStock(Stock stock, int numOfStocks) {
         portfolio.merge(stock.getName(), numOfStocks, Integer::sum);
     }
 
