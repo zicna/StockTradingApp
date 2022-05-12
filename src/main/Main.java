@@ -114,7 +114,7 @@ public class Main{
         System.out.print("Please choose a stock to stade (AAPL, FB, GOOG, or TSLA): ");
         String stock = scanner.nextLine();
         while(!(stock.equals("APPL") || stock.equals("FB") || stock.equals("GOOG") || stock.equals("TSLA"))){
-            System.out.print("Please choose a stock to stade (AAPL, FB, GOOG, or TSLA): ");
+            System.out.print("Please choose a stock to stade (APPL, FB, GOOG, or TSLA): ");
             stock = scanner.nextLine();
         }
         return stock;
