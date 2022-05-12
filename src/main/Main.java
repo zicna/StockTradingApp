@@ -42,7 +42,7 @@ public class Main{
             
             if (first.equals("buy")){
                 if (account.getFunds() < stockPrice * third){
-                    System.out.println("Sorry insufficient funds");
+                    unsuccessfulTrade(account);
                     continue;
                 }else {
                     account.addStock(stock, third);
@@ -50,7 +50,7 @@ public class Main{
                 }
             }else if(first.equals("sell")){
                 if(account.getPortfolio().get(second) < third){
-                    System.out.println("Sorry insufficient stock number");
+                    unsuccessfulTrade(account);
                     continue;
                 }else{
                     account.removeStock(stock, third);
@@ -121,7 +121,6 @@ public class Main{
     }
 
     public static int numberOfStocks(){
-        
         System.out.print("Enter number of stocks: ");
         while(!scanner.hasNextInt()){
             System.out.print("Enter number of stocks: ");
@@ -130,6 +129,11 @@ public class Main{
         int stockNumber = scanner.nextInt();
         scanner.nextLine();
         return stockNumber;
+    }
+
+    public static void unsuccessfulTrade(Account account){
+        System.out.print("\nThe trade was " + Color.RED + "unsuccessful" + Color.RESET + ". Here is your portfolio: \n");
+        account.print();
     }
 
     
