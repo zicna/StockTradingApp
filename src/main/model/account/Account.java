@@ -1,15 +1,16 @@
 package main.model.account;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import main.model.stock.Stock;
 
 public abstract class Account{
     private double funds;
-    private ArrayList<Stock> portfolio;
+    private HashSet<Stock> portfolio;
 
     public Account(){
-        portfolio = new ArrayList<>();
+        portfolio = new HashSet<>();
         this.funds = 4000;
     }
 
@@ -17,14 +18,14 @@ public abstract class Account{
         return funds;
     }
 
-    public ArrayList<Stock> getPortfolio() {
+    public HashSet<Stock> getPortfolio() {
         return portfolio;
     }
 
     public void setFunds(double funds) {
         this.funds = funds;
     }
-    public void setPortfolio(ArrayList<Stock> portfolio) {
+    public void setPortfolio(HashSet<Stock> portfolio) {
         this.portfolio = portfolio;
     }
 
