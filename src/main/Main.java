@@ -29,9 +29,14 @@ public class Main{
         accCreateAnnouncement(account);
         
         for (int day = 1; day < 2161; day++) {
+            System.out.print("Enter anything to start trading...");
+            scanner.nextLine();
             diplayStockPrice(day);
+            String first = buyOrSell();
+            String second = chooseAStock();
+            int third = numberOfStocks();
             
-            buyOrSell();
+
         }
         
         scanner.close();
@@ -55,6 +60,7 @@ public class Main{
     }
 
     public static void diplayStockPrice(int day){
+        System.out.println("\n");
         System.out.println(Color.RED + "\t\tDAY: " + Color.GREEN + day + Color.RED + " PRICES" + Color.RESET + "\n");
         System.out.println(Color.GREEN + "\t" + StockEnum.AAPL.toString() + Color.RESET + " " + Color.BLUE + "\t" + getStock(StockEnum.AAPL.toString(), day) + Color.RESET);
         System.out.println(Color.GREEN + "\t" + StockEnum.FB.toString() + Color.RESET + " " + Color.BLUE + "\t" + getStock(StockEnum.FB.toString(), day)+ Color.RESET);
@@ -62,14 +68,34 @@ public class Main{
         System.out.println(Color.GREEN + "\t" + StockEnum.TSLA.toString() + Color.RESET + " " + Color.BLUE + "\t" + getStock(StockEnum.TSLA.toString(), day)+ Color.RESET);
     }
 
-    public static void buyOrSell(){
+    public static String buyOrSell(){
         System.out.print("\n\nWould you like to 'buy' or 'sell'?");
         String input = scanner.nextLine();
         while(!(input.equals("buy") || input.equals("sell"))){
             System.out.print("\n\nWould you like to 'buy' or 'sell'?");
             input = scanner.nextLine();
         }
-        System.out.println(input);
+        return input;
+    }
+
+    public static String chooseAStock(){
+        System.out.print("Please choose a stock to stade (AAPL, FB, GOOG, or TSLA): ");
+        String stock = scanner.nextLine();
+        while(!(stock.equals("APPL") || stock.equals("FB") || stock.equals("GOOG") || stock.equals("TSLA"))){
+            System.out.print("Please choose a stock to stade (AAPL, FB, GOOG, or TSLA): ");
+            stock = scanner.nextLine();
+        }
+        return stock;
+    }
+
+    public static int numberOfStocks(){
+        System.out.print("Enter number of stocks: ");
+        int stockNumber = scanner.nextInt();
+        while(!(scanner.hasNextInt())){
+            System.out.print("Enter number of stocks: ");
+            stockNumber = scanner.nextInt();
+        }
+        return stockNumber;
     }
 
     
