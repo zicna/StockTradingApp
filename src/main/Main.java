@@ -33,31 +33,34 @@ public class Main{
         for (int day = 1; day < 2161; day++) {
             diplayStockPrice(day);
 
-            String first = buyOrSell();
-            String second = chooseAStock();
-            int third = numberOfStocks();
+            String choice = buyOrSell();
+            String stockName = chooseAStock();
+            int numOfStock = numberOfStocks();
 
-            double stockPrice = Double.parseDouble(getStock(second, day));
-            Stock stock = new Stock(second, stockPrice);
-            
-            if (first.equals("buy")){
-                if (account.getFunds() < stockPrice * third){
-                    unsuccessfulTrade(account);
-                    continue;
-                }else {
-                    account.addStock(stock, third);
-                    account.setFunds(first, stockPrice, third);
-                    successfulTrade(account);
-                }
-            }else if(first.equals("sell")){
-                if(account.getPortfolio().get(second) < third){
-                    unsuccessfulTrade(account);
-                    continue;
-                }else{
-                    account.removeStock(stock, third);
-                    account.setFunds(first, stockPrice, third);
-                    successfulTrade(account);
-                }
+            double stockPrice = Double.parseDouble(getStock(stockName, day));
+            Stock stock = new Stock(stockName, stockPrice);
+
+            switch(choice){
+                case "buy": 
+                    if (account.getFunds() < stockPrice * numOfStock){
+                        unsuccessfulTrade(account);
+                        continue;
+                    }else {
+                        account.addStock(stock, numOfStock);
+                        account.setFunds(choice, stockPrice, numOfStock);
+                        successfulTrade(account);
+                    }
+                    break;
+                case "sell":
+                    if(account.getPortfolio().get(stockName) < numOfStock){
+                        unsuccessfulTrade(account);
+                        continue;
+                    }else{
+                        account.removeStock(stock, numOfStock);
+                        account.setFunds(choice, stockPrice, numOfStock);
+                        successfulTrade(account);
+                    }
+                break;
             }
 
             System.out.print("Enter " + Color.RED_BACKGROUND +  " exit " + Color.RESET + " to exit or anything else to continue: ");
