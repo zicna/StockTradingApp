@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.HashMap;
 
 import main.model.stock.Stock;
+import main.model.stock.StockEnum;
 import main.utils.Color;
 
 public abstract class Account{
@@ -13,6 +14,10 @@ public abstract class Account{
 
     public Account(){
         portfolio = new HashMap<>();
+        this.portfolio.put(StockEnum.AAPL.toString(), 0);
+        this.portfolio.put(StockEnum.FB.toString(), 0);
+        this.portfolio.put(StockEnum.GOOG.toString(), 0);
+        this.portfolio.put(StockEnum.TSLA.toString(), 0);
         this.funds = 4000;
     }
 
@@ -38,6 +43,10 @@ public abstract class Account{
 
     public void addStock(Stock stock, int numOfStocks){
         portfolio.merge(stock.getName(), numOfStocks, Integer::sum);
+    }
+
+    public void removeStock(Stock stock, int numberOfStocks){
+        portfolio.merge(stock.getName(), numberOfStocks, (oldValue, newValue) -> oldValue - numberOfStocks);
     }
 
     public void print(){
