@@ -10,8 +10,6 @@ import java.util.stream.Stream;
 import main.model.account.Account;
 import main.model.account.Personal;
 import main.model.account.TFSA;
-// import main.model.stock.Stock;
-// import main.model.stock.StockEnum;
 import main.model.trade.Trade;
 import main.model.trade.Trade.Stock;
 import main.model.trade.Trade.Choice;
@@ -41,37 +39,37 @@ public class Main{
             int stockCount = numberOfStocks();
 
             double stockPrice = Double.parseDouble(getStock(stockName, day));
-            // Stock stock = new Stock(stockName, stockPrice);
 
             switch(choice){
                 case "BUY": 
                     if (account.getFunds() < stockPrice * stockCount){
                         unsuccessfulTrade(account);
-                        continue;
                     }else {
                         Trade trade = new Trade(
                             Stock.valueOf(stockName),
                             stockPrice, 
                             stockCount, 
                             Choice.valueOf(choice));
-                        // account.addStock(stock, stockCount);
+
                         account.buyTrades(trade);
-                        account.print();
-                        // account.setFunds(choice, stockPrice, stockCount);
-                        // successfulTrade(account);
-                    }
+                        successfulTrade(account);
+                        }
                     break;
                 case "SELL":
-                    if(account.getPortfolio().get(stockName) < stockCount){
+                    if(account.getPortfolio().get(Stock.valueOf(stockName)) < stockCount){
                         unsuccessfulTrade(account);
-                        continue;
                     }
-                    // else{
-                    //     account.removeStock(stock, stockCount);
-                    //     account.setFunds(choice, stockPrice, stockCount);
-                    //     successfulTrade(account);
-                    // }
-                break;
+                    else{
+                        Trade trade = new Trade(
+                            Stock.valueOf(stockName),
+                            stockPrice, 
+                            stockCount, 
+                            Choice.valueOf(choice));
+
+                        account.sellTrades(trade);
+                        successfulTrade(account);
+                    }
+                    break;
             }
 
             System.out.print("Enter " + Color.RED_BACKGROUND +  " exit " + Color.RESET + " to exit or anything else to continue: ");
@@ -186,7 +184,4 @@ public class Main{
             return null;
         }
     }
-
-
-
 }
