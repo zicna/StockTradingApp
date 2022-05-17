@@ -40,38 +40,18 @@ public class Main{
 
             double stockPrice = Double.parseDouble(getStock(stockName, day));
 
-            switch(choice){
-                case "BUY": 
-                    if (account.getFunds() < stockPrice * stockCount){
-                        unsuccessfulTrade(account);
-                    }else {
-                        Trade trade = new Trade(
-                            Stock.valueOf(stockName),
-                            stockPrice, 
-                            stockCount, 
-                            Choice.valueOf(choice));
+            if((choice.equals("BUY") && account.getFunds() < stockPrice * stockCount) || (choice.equals("SELL") && account.getPortfolio().get(Stock.valueOf(stockName)) < stockCount)){
+                unsuccessfulTrade(account);
+            }else{
+                Trade trade = new Trade(
+                    Stock.valueOf(stockName),
+                    stockPrice, 
+                    stockCount, 
+                    Choice.valueOf(choice));
 
-                        account.setPortfolio(trade);
-                        account.setFunds(trade);
-                        successfulTrade(account);
-                        }
-                    break;
-                case "SELL":
-                    if(account.getPortfolio().get(Stock.valueOf(stockName)) < stockCount){
-                        unsuccessfulTrade(account);
-                    }
-                    else{
-                        Trade trade = new Trade(
-                            Stock.valueOf(stockName),
-                            stockPrice, 
-                            stockCount, 
-                            Choice.valueOf(choice));
-                            
-                        account.setPortfolio(trade);
-                        account.setFunds(trade);
-                        successfulTrade(account);
-                    }
-                    break;
+                account.setPortfolio(trade);
+                account.setFunds(trade);
+                successfulTrade(account);
             }
 
             System.out.print("Enter " + Color.RED_BACKGROUND +  " exit " + Color.RESET + " to exit or anything else to continue: ");
