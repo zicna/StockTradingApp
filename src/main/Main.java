@@ -56,6 +56,7 @@ public class Main{
                             Choice.valueOf(choice));
                         // account.addStock(stock, stockCount);
                         account.buyTrades(trade);
+                        account.print();
                         // account.setFunds(choice, stockPrice, stockCount);
                         // successfulTrade(account);
                     }
@@ -126,7 +127,7 @@ public class Main{
         System.out.print("Please choose a stock to trade:\t\t ");
         String stock = scanner.nextLine();
         while(!(stock.equals("AAPL") || stock.equals("FB") || stock.equals("GOOG") || stock.equals("TSLA"))){
-            System.out.print("Please choose a stock to stade:\t\t ");
+            System.out.print("Please choose a stock to trade:\t\t ");
             stock = scanner.nextLine();
         }
         return stock;
