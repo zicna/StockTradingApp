@@ -12,6 +12,7 @@ import main.model.account.Personal;
 import main.model.account.TFSA;
 import main.model.stock.Stock;
 import main.model.stock.StockEnum;
+import main.model.trade.Trade;
 import main.utils.Color;
 
 public class Main{
@@ -35,30 +36,31 @@ public class Main{
 
             String choice = buyOrSell();
             String stockName = chooseAStock();
-            int numOfStock = numberOfStocks();
+            int stockCount = numberOfStocks();
 
             double stockPrice = Double.parseDouble(getStock(stockName, day));
-            Stock stock = new Stock(stockName, stockPrice);
+            // Stock stock = new Stock(stockName, stockPrice);
 
             switch(choice){
                 case "buy": 
-                    if (account.getFunds() < stockPrice * numOfStock){
+                    if (account.getFunds() < stockPrice * stockCount){
                         unsuccessfulTrade(account);
                         continue;
                     }else {
-                        account.addStock(stock, numOfStock);
-                        account.buyTrades();
-                        account.setFunds(choice, stockPrice, numOfStock);
+                        Trade trade = new Trade(stockName, stockPrice, stockCount, choice);
+                        // account.addStock(stock, stockCount);
+                        account.buyTrades(trade);
+                        account.setFunds(choice, stockPrice, stockCount);
                         successfulTrade(account);
                     }
                     break;
                 case "sell":
-                    if(account.getPortfolio().get(stockName) < numOfStock){
+                    if(account.getPortfolio().get(stockName) < stockCount){
                         unsuccessfulTrade(account);
                         continue;
                     }else{
-                        account.removeStock(stock, numOfStock);
-                        account.setFunds(choice, stockPrice, numOfStock);
+                        account.removeStock(stock, stockCount);
+                        account.setFunds(choice, stockPrice, stockCount);
                         successfulTrade(account);
                     }
                 break;
@@ -104,10 +106,10 @@ public class Main{
     }
 
     public static String buyOrSell(){
-        System.out.print("\n\nWould you like to '" +  Color.GREEN + "buy" + Color.RESET + "' or '" +  Color.GREEN + "sell" + Color.RESET + "'?\t ");
+        System.out.print("\n\nWould you like to '" +  Color.GREEN + "BUY" + Color.RESET + "' or '" +  Color.GREEN + "SELL" + Color.RESET + "'?\t ");
         String input = scanner.nextLine();
-        while(!(input.equals("buy") || input.equals("sell"))){
-            System.out.print("\n\nWould you like to '" +  Color.GREEN + "buy" + Color.RESET + "' or '" +  Color.GREEN + "sell" + Color.RESET + "'?\t ");
+        while(!(input.equals("BUY") || input.equals("SELL"))){
+            System.out.print("\n\nWould you like to '" +  Color.GREEN + "BUY" + Color.RESET + "' or '" +  Color.GREEN + "SELL" + Color.RESET + "'?\t ");
             input = scanner.nextLine();
         }
         return input;
