@@ -34,6 +34,10 @@ public class Trade {
     public double getStockPrice() {
         return stockPrice;
     }
+
+    public Choice getChoice() {
+        return choice;
+    }
     
     public void setStockCount(int stockCount) {
         this.stockCount = stockCount;
