@@ -8,7 +8,7 @@ import java.util.HashMap;
 // import main.model.stock.StockEnum;
 import main.model.trade.Trade;
 import main.model.trade.Trade.Stock;
-// import main.model.trade.Trade.Choice;
+import main.model.trade.Trade.Choice;
 import main.utils.Color;
 
 public abstract class Account{
@@ -32,16 +32,19 @@ public abstract class Account{
         return portfolio;
     }
 
-    public void setFunds(String chooice, double funds, int numberOfStocks) {
-        if(chooice.equals("buy")){
-            this.funds -= funds * numberOfStocks;
-        }else{
-            this.funds += funds * numberOfStocks;
+    public void setFunds(Trade trade) {
+        switch(trade.getChoice()){
+            case BUY: 
+                this.funds -= trade.getStockPrice() * trade.getStockCount();
+                break;
+                case SELL:
+                this.funds += trade.getStockPrice() * trade.getStockCount();
+                break;
         }
     }
     
-    public void setPortfolio(HashMap<Stock, Integer> portfolio) {
-        this.portfolio = portfolio;
+    public void setPortfolio(Stock stock, Integer stockCount) {
+        this.portfolio.put(stock, stockCount);
     }
 
     // public void addStock(Stock stock, int numOfStocks) {
