@@ -21,10 +21,8 @@ public class Personal extends Account{
         // if(trade.getStockPrice() * trade.getStockCount() > this.getFunds()){
         //    System.out.println("not enough funds for this trade ");
         // }
-
-        
-        System.out.println("buy trades");
-        
+        this.setPortfolio(trade.getStock(), trade.getStockCount());
+        this.setFunds(trade);
     }
 }
 
