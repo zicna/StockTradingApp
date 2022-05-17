@@ -1,7 +1,6 @@
 package main.model.account;
 
 import java.util.HashMap;
-import java.util.HashMap;
 
 import main.model.trade.Trade;
 import main.model.trade.Trade.Stock;
@@ -9,7 +8,7 @@ import main.model.trade.Trade.Choice;
 import main.utils.Color;
 
 public abstract class Account{
-    private double funds;
+    double funds;
     private HashMap<Stock, Integer> portfolio;
 
     public Account(){
@@ -27,17 +26,6 @@ public abstract class Account{
 
     public HashMap<Stock, Integer> getPortfolio() {
         return portfolio;
-    }
-
-    public void setFunds(Trade trade) {
-        switch(trade.getChoice()){
-            case BUY: 
-                this.funds -= trade.getStockPrice() * trade.getStockCount();
-                break;
-                case SELL:
-                this.funds += trade.getStockPrice() * trade.getStockCount();
-                break;
-        }
     }
     
     public void setPortfolio(Trade trade) {
@@ -61,9 +49,7 @@ public abstract class Account{
 
         System.out.println("\n\tFunds left\t" + Color.GREEN + "$" + this.getFunds() + Color.RESET);
         System.out.println(Color.PURPLE + "\n\t*************************************" + Color.RESET + "\n");
-
     }
 
-    public abstract void sellTrades(Trade trade);
-    public abstract void buyTrades(Trade trade);
+    public abstract void setFunds(Trade trade);
 }

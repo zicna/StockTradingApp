@@ -5,21 +5,20 @@ import main.model.trade.Trade;
 
 public class Personal extends Account{
 
+    private static final double SELL_FEE = 0.95;
+
     public Personal(){
         super();
     }
-    
-    @Override
-    public void sellTrades(Trade trade) {
-        System.out.println("sell trades");
-        this.setPortfolio(trade);
-        this.setFunds(trade);
-    }
-    
-    @Override
-    public void buyTrades(Trade trade) {
-        this.setPortfolio(trade);
-        this.setFunds(trade);
+    public void setFunds(Trade trade) {
+        switch(trade.getChoice()){
+            case BUY: 
+                this.funds -= trade.getStockPrice() * trade.getStockCount();
+                break;
+            case SELL:
+                this.funds += trade.getStockPrice() * trade.getStockCount() * SELL_FEE;
+                break;
+        }
     }
 }
 

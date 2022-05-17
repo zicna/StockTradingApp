@@ -51,7 +51,8 @@ public class Main{
                             stockCount, 
                             Choice.valueOf(choice));
 
-                        account.buyTrades(trade);
+                        account.setPortfolio(trade);
+                        account.setFunds(trade);
                         successfulTrade(account);
                         }
                     break;
@@ -66,7 +67,8 @@ public class Main{
                             stockCount, 
                             Choice.valueOf(choice));
 
-                        account.sellTrades(trade);
+                            account.setPortfolio(trade);
+                            account.setFunds(trade);
                         successfulTrade(account);
                     }
                     break;
