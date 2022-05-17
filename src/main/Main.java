@@ -10,9 +10,11 @@ import java.util.stream.Stream;
 import main.model.account.Account;
 import main.model.account.Personal;
 import main.model.account.TFSA;
-import main.model.stock.Stock;
-import main.model.stock.StockEnum;
+// import main.model.stock.Stock;
+// import main.model.stock.StockEnum;
 import main.model.trade.Trade;
+import main.model.trade.Trade.Stock;
+import main.model.trade.Trade.Choice;
 import main.utils.Color;
 
 public class Main{
@@ -42,27 +44,32 @@ public class Main{
             // Stock stock = new Stock(stockName, stockPrice);
 
             switch(choice){
-                case "buy": 
+                case "BUY": 
                     if (account.getFunds() < stockPrice * stockCount){
                         unsuccessfulTrade(account);
                         continue;
                     }else {
-                        Trade trade = new Trade(stockName, stockPrice, stockCount, choice);
+                        Trade trade = new Trade(
+                            Stock.valueOf(stockName),
+                            stockPrice, 
+                            stockCount, 
+                            Choice.valueOf(choice));
                         // account.addStock(stock, stockCount);
                         account.buyTrades(trade);
-                        account.setFunds(choice, stockPrice, stockCount);
-                        successfulTrade(account);
+                        // account.setFunds(choice, stockPrice, stockCount);
+                        // successfulTrade(account);
                     }
                     break;
-                case "sell":
+                case "SELL":
                     if(account.getPortfolio().get(stockName) < stockCount){
                         unsuccessfulTrade(account);
                         continue;
-                    }else{
-                        account.removeStock(stock, stockCount);
-                        account.setFunds(choice, stockPrice, stockCount);
-                        successfulTrade(account);
                     }
+                    // else{
+                    //     account.removeStock(stock, stockCount);
+                    //     account.setFunds(choice, stockPrice, stockCount);
+                    //     successfulTrade(account);
+                    // }
                 break;
             }
 
@@ -99,10 +106,10 @@ public class Main{
     public static void diplayStockPrice(int day){
         System.out.println("\n");
         System.out.println(Color.RED + "\t\tDAY: " + Color.GREEN + day + Color.RED + " PRICES" + Color.RESET + "\n");
-        System.out.println(Color.GREEN + "\t" + StockEnum.AAPL.toString() + Color.RESET + " " + Color.BLUE + "\t" + getStock(StockEnum.AAPL.toString(), day) + Color.RESET);
-        System.out.println(Color.GREEN + "\t" + StockEnum.FB.toString() + Color.RESET + " " + Color.BLUE + "\t" + getStock(StockEnum.FB.toString(), day)+ Color.RESET);
-        System.out.println(Color.GREEN + "\t" + StockEnum.GOOG.toString() + Color.RESET + " " + Color.BLUE + "\t" + getStock(StockEnum.GOOG.toString(), day)+ Color.RESET);
-        System.out.println(Color.GREEN + "\t" + StockEnum.TSLA.toString() + Color.RESET + " " + Color.BLUE + "\t" + getStock(StockEnum.TSLA.toString(), day)+ Color.RESET);
+        System.out.println(Color.GREEN + "\t" + Stock.AAPL.toString() + Color.RESET + " " + Color.BLUE + "\t" + getStock(Stock.AAPL.toString(), day) + Color.RESET);
+        System.out.println(Color.GREEN + "\t" + Stock.FB.toString() + Color.RESET + " " + Color.BLUE + "\t" + getStock(Stock.FB.toString(), day)+ Color.RESET);
+        System.out.println(Color.GREEN + "\t" + Stock.GOOG.toString() + Color.RESET + " " + Color.BLUE + "\t" + getStock(Stock.GOOG.toString(), day)+ Color.RESET);
+        System.out.println(Color.GREEN + "\t" + Stock.TSLA.toString() + Color.RESET + " " + Color.BLUE + "\t" + getStock(Stock.TSLA.toString(), day)+ Color.RESET);
     }
 
     public static String buyOrSell(){

@@ -1,5 +1,8 @@
 package main.model.account;
 
+
+import main.model.trade.Trade;
+
 public class Personal extends Account{
 
     public Personal(){
@@ -14,6 +17,12 @@ public class Personal extends Account{
 
     @Override
     public void buyTrades(Trade trade) {
+        // * it should never get here with invalid funds 
+        // if(trade.getStockPrice() * trade.getStockCount() > this.getFunds()){
+        //    System.out.println("not enough funds for this trade ");
+        // }
+
+        
         System.out.println("buy trades");
         
     }
