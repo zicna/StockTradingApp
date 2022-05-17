@@ -4,20 +4,23 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashMap;
 
-import main.model.stock.Stock;
-import main.model.stock.StockEnum;
+// import main.model.stock.Stock;
+// import main.model.stock.StockEnum;
+import main.model.trade.Trade;
+import main.model.trade.Trade.Stock;
+// import main.model.trade.Trade.Choice;
 import main.utils.Color;
 
 public abstract class Account{
     private double funds;
-    private HashMap<String, Integer> portfolio;
+    private HashMap<Stock, Integer> portfolio;
 
     public Account(){
         portfolio = new HashMap<>();
-        this.portfolio.put(StockEnum.AAPL.toString(), 0);
-        this.portfolio.put(StockEnum.FB.toString(), 0);
-        this.portfolio.put(StockEnum.GOOG.toString(), 0);
-        this.portfolio.put(StockEnum.TSLA.toString(), 0);
+        this.portfolio.put(Stock.AAPL, 0);
+        this.portfolio.put(Stock.FB, 0);
+        this.portfolio.put(Stock.GOOG, 0);
+        this.portfolio.put(Stock.TSLA, 0);
         this.funds = 4000;
     }
 
@@ -25,7 +28,7 @@ public abstract class Account{
         return funds;
     }
 
-    public HashMap<String, Integer> getPortfolio() {
+    public HashMap<Stock, Integer> getPortfolio() {
         return portfolio;
     }
 
@@ -37,17 +40,17 @@ public abstract class Account{
         }
     }
     
-    public void setPortfolio(HashMap<String, Integer> portfolio) {
+    public void setPortfolio(HashMap<Stock, Integer> portfolio) {
         this.portfolio = portfolio;
     }
 
-    public void addStock(Stock stock, int numOfStocks) {
-        portfolio.merge(stock.getName(), numOfStocks, Integer::sum);
-    }
+    // public void addStock(Stock stock, int numOfStocks) {
+    //     portfolio.merge(stock.getName(), numOfStocks, Integer::sum);
+    // }
 
-    public void removeStock(Stock stock, int numberOfStocks){
-        portfolio.merge(stock.getName(), numberOfStocks, (oldValue, newValue) -> oldValue - numberOfStocks);
-    }
+    // public void removeStock(Stock stock, int numberOfStocks){
+    //     portfolio.merge(stock.getName(), numberOfStocks, (oldValue, newValue) -> oldValue - numberOfStocks);
+    // }
 
     public void print(){
         System.out.println(Color.PURPLE + "\n\t********** P O R T F O L I O **********" + Color.RESET);
@@ -63,5 +66,5 @@ public abstract class Account{
     }
 
     public abstract void sellTrades();
-    public abstract void buyTrades();
+    public abstract void buyTrades(Trade trade);
 }
