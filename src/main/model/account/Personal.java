@@ -13,7 +13,7 @@ public class Personal extends Account{
     }
 
     @Override
-    public void buyTrades() {
+    public void buyTrades(Trade trade) {
         System.out.println("buy trades");
         
     }

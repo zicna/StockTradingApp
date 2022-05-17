@@ -47,6 +47,7 @@ public class Main{
                         continue;
                     }else {
                         account.addStock(stock, numOfStock);
+                        account.buyTrades();
                         account.setFunds(choice, stockPrice, numOfStock);
                         successfulTrade(account);
                     }
