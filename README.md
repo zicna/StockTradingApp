@@ -131,7 +131,7 @@ Great help for this app to see light of the day goes to Rayan Slim and this [Ude
 ___
 
 ##   License
-This application is avaiable as open source under the terms of the [MIT License](LICENSE).
+This application is avaiable as open source under the terms of the [MIT License](https://github.com/zicna/StockTradingApp/blob/master/LICENSE).
 
 <!-- * inline colored elements: -->
 
