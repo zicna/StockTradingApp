@@ -1,9 +1,10 @@
 <h1 align="center">Stock Trading Application</h1> 
 
-![Stock Trading Image]("./Stock_img.jpg.jpg")
-*<p align="center"> main pic or gif </p>*
 
-<p align="center">short intro for application</p>
+*<p align="center"> ![Stock Trading Image](./Stock_img.jpg.jpg) </p>*
+*<p align="center"> Stock Trading </p>*
+
+<p align="center">Used this application to practise basic OOP concepts in Java, Scanner, Streams, Reading from Files, Enums, Collections data and other...  </p>
 
 ---
 ### Table of Content
@@ -24,9 +25,9 @@
 
 ## Description
 
-- general description
-- who are te users for this application
-- ....
+- left to be done
+- left to be done
+
 
 Check out App Demo link [here](https://github.com/zicna/StockTradingApp)
 ___
@@ -50,17 +51,16 @@ ___
   java main/Main
   
   ```
-  <spam style="color:yellow">NOTE: We can check API we are getting from server by navigating to `http://localhost:3000/users` </spam>
- 
 ___   
 
 ## How to use this app 
+left to be done
 
 ___
 ## Challanges
- - challange one 
- - challange one
- - challange one
+ - Reading from files in streams 
+ - Updating HashMaps
+ - 
 ___
 ## Left to be done 
 - [ ] Write JUnit tests
@@ -119,21 +119,5 @@ ___
 ##   License
 This application is avaiable as open source under the terms of the [MIT License](https://github.com/zicna/StockTradingApp/blob/master/LICENSE).
 
-<!-- * inline colored elements: -->
 
-<spam style="color:yellow">yellow</spam>
-<spam style="color:red">red</spam>
-<spam style="color:green">green</spam>
-<spam style="color:blue">blue</spam>
-<spam style="color:pink">pink</spam>
-<spam style="color:orange">orange</spam>
-
-<!-- * Emoji often used in readme.md -->
-
-
-✅✅✅✅
-
-❌❌❌❌
-
-find more [here](https://emojidb.org/beer-emojis)
 
