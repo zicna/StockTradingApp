@@ -33,8 +33,8 @@ public abstract class Account{
             case BUY: 
                 this.portfolio.replace(trade.getStock(), (trade.getStockCount() + this.portfolio.get(trade.getStock())));
                 break;
-                case SELL:
-                this.portfolio.replace(trade.getStock(), (trade.getStockCount() - this.portfolio.get(trade.getStock())));
+            case SELL:
+                this.portfolio.replace(trade.getStock(), (this.portfolio.get(trade.getStock()) - trade.getStockCount()));
                 break;
         }
     }
