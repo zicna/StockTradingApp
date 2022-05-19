@@ -1,15 +1,16 @@
 package main.model.trade;
 
 public class Trade {
-    private Stock stock;
-    private double stockPrice;
-    private int stockCount;
-    private Choice choice;
-
     public enum Stock {FB, TSLA, AAPL, GOOG};
     public enum Choice {BUY, SELL}
+
+    private Trade.Stock stock;
+    private double stockPrice;
+    private int stockCount;
+    private Trade.Choice choice;
+
     
-    public Trade(Stock stock, double stockPrice, int stockCount, Choice choice){
+    public Trade(Trade.Stock stock, double stockPrice, int stockCount, Trade.Choice choice){
         this.stock = stock;
         this.stockPrice = stockPrice;
         this.stockCount = stockCount;
